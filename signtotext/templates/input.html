@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    @font-face {
+         font-family: 'MaplestoryOTFBold';
+         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+         font-weight: normal;
+         font-style: normal;
+    }
+    * {
+       font-family: 'MaplestoryOTFBold';
+    }
+    </style>
+</head>
+<body>
+    <h1>음성으로 나타낼 텍스트를 입력하시오</h1>
+  <form action="{% url 'output' %}" method="GET">
+    단어 : <input type="text" name="name">
+    <input type="submit">
+  </form>
+</body>
+</html>
