@@ -1,5 +1,5 @@
 import os
-# from gtts import gTTS
+from gtts import gTTS
 # from django.views.generic import TemplateView, FormView
 # from signtotext.forms import TTSForm
 from django.http import HttpResponse
@@ -36,7 +36,7 @@ def input(request):
 
 
 def output(request):
-    name = request.GET.get('name')
+    text = request.GET.get('text')
     # TTS 엔진 초기화
     engine = pyttsx3.init()
 
@@ -50,8 +50,8 @@ def output(request):
 
     # 목소리
     voices = engine.getProperty('voices')
-    # engine.setProperty('voice', voices[0].id) # 남성
-    engine.setProperty('voice', voices[1].id)  # 여성
+    engine.setProperty('voice', voices[0].id) # 영어, 한국어 출력
+    # engine.setProperty('voice', voices[1].id)  # 영어만 출력
 
     # 말하기
     # engine.say("안녕하세요.")
@@ -59,10 +59,13 @@ def output(request):
     # engine.stop() # 끝
 
     # 파일 저장
-    engine.save_to_file(name, 'static/voice/test2.mp3')
+    engine.save_to_file(text, '%s.mp3' % os.path.join('./signtotext/static/', "tts1"))
     engine.runAndWait()
 
+    '''tts = gTTS(text=text, lang='ko')
+    tts.save("%s.mp3" % os.path.join('./signtotext/static/', "tts"))'''
+
     context = {
-        'name': name,
+        'text': text,
     }
     return render(request, 'output.html', context)

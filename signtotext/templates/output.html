@@ -14,9 +14,10 @@
        font-family: 'MaplestoryOTFBold';
     }
     </style>
+    {% load static %}
 </head>
 <body>
-    <h1>{{ name }}을 음성으로 바꿉니다.</h1>
-    <audio src="/static/voice/test.mp3" controls="controls" autoplay="autoplay"></audio>
+    <h1>{{ text }}을 음성으로 바꿉니다.</h1>
+    <audio src="{% static 'tts1.mp3' %}" controls="controls" autoplay="autoplay"></audio>
 </body>
 </html>
