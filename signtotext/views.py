@@ -37,6 +37,7 @@ def input(request):
 
 def output(request):
     text = request.GET.get('text')
+    ## pyttsx3
     # TTS 엔진 초기화
     engine = pyttsx3.init()
 
@@ -51,19 +52,11 @@ def output(request):
     # 목소리
     voices = engine.getProperty('voices')
     engine.setProperty('voice', voices[0].id) # 영어, 한국어 출력
-    # engine.setProperty('voice', voices[1].id)  # 영어만 출력
-
-    # 말하기
-    # engine.say("안녕하세요.")
-    # engine.runAndWait() # 말 다할때까지 대기
-    # engine.stop() # 끝
+    # engine.setProperty('voice', voices[1].id)  # 영어만 출력 가능
 
     # 파일 저장
     engine.save_to_file(text, '%s.mp3' % os.path.join('./signtotext/static/', "tts1"))
     engine.runAndWait()
-
-    '''tts = gTTS(text=text, lang='ko')
-    tts.save("%s.mp3" % os.path.join('./signtotext/static/', "tts"))'''
 
     context = {
         'text': text,
