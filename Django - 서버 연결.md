@@ -9,7 +9,9 @@
 - nginx와 gunicorn
   - 클라우드 강사님이 말씀하신 것
   - nginx : 웹 서버 소프트웨어
+    - runserver는 개발용이지 배포용이 아니기 때문에 웹 서버가 필요
   - gunicorn : Python 웹 서버 게이트웨이 인터페이스 HTTP 서버
+    - django와 웹 서버의 통신을 담당
 - [EC2+nginx+gunicorn+django 배포](https://velog.io/@y1andyu/Nginx-gunicorn-Django-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0)
 
 # Ubuntu Setting
@@ -207,4 +209,5 @@ settings.py` 파일에서 다음과 같이 staticfile들을 모을 경로를 알
 
 
 - [Django 프로젝트 배포](https://nachwon.github.io/django-deploy-1-aws/)
+- [django EC2 배포](https://velog.io/@younge/Django-EC2%EC%97%90-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0-Gunicorn-Nginx-%EC%97%B0%EA%B2%B0)
 
