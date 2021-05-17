@@ -44,4 +44,26 @@
 - `python manage.py startapp [앱 이름]`
 - `python manage.py migrate`
 - `python manage.py runserver 8000`
+  - 실행 안됨
+
+
+
+### gunicorn
+
+- `pip3 install gunicorn` : 설치
+
+- `gunicorn --bind 0:8000 config.wsgi:application`
+
+  - 실행이 안됨..
+
+- `sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8000`
+
+  - 사이트에 접속하기 위해 80포트로 접솔했을 때 8000포트로 리다이렉션
+
+  
+
+### nginx
+
+- `sudo apt install nginx` : 설치
+- 
 
