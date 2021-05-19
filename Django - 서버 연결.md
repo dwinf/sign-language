@@ -60,10 +60,73 @@
 
   - 사이트에 접속하기 위해 80포트로 접솔했을 때 8000포트로 리다이렉션
 
-  
+- `sudo vi /etc/systemd/system/gunicorn.service`
+
+  - ```
+    [Unit]
+    Description=gunicorn daemon
+    After=network.target
+    
+    [Service]
+    User=ubuntu
+    Group=www-data
+    WorkingDirectory=/home/ubuntu/sign
+    ExecStart=/home/ubuntu/venv_for_django/bin/gunicorn \
+            --workers 1 \
+            --bind 0.0.0.0:8888 sign.wsgi:application
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
+  - gunicorn 등록
+
+- ```
+  $ sudo systemctl start gunicorn
+  $ sudo systemctl enable gunicorn
+  $ sudo systemctl status gunicorn
+  ```
+
+  - 설정을 저장한 뒤에는 기동시켜야함
+
+- 
 
 ### nginx
 
 - `sudo apt install nginx` : 설치
-- 
+  - ```
+    $ service nginx restart 
+    $ service nginx status
+    ```
+
+  - 설치한 뒤 재기동 및 상태확인
+
+- `sudo vi /etc/nginx/sites-enabled/프로젝트이름`
+
+  - ```
+    server {
+            listen 80;
+            server_name [public ip주소];
+    		charset utf-8
+           
+    		location / {
+                    include proxy_params;
+                    proxy_pass http://0.0.0.0:8000
+            }
+            
+            location /static/ {
+                    alias /home/ubuntu/[project_directory]/static;
+            }
+            
+            location /media/ {
+                    alias /home/ubuntu/[project_directory]/media;
+            }
+    }
+    ```
+
+  - 현재 이 방식대로 했지만 static폴더를 인식하지 못함
+
+- `sudo systemctl daemon-reload`
+
+- `sudo systemctl restart nginx`
 
