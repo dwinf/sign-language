@@ -130,3 +130,27 @@
 
 - `sudo systemctl restart nginx`
 
+
+
+## 오류 수정
+
+### 1. static 파일 접근
+
+- 설정관련 파일 문제라고 생각했지만 아니었다.
+
+  - `sudo vi /etc/nginx/sites-enabled/sign` 
+  - 혹은 db를 추가하거나...
+
+- urls.py 문서에 static 관련 경로를 추가해주니 접근 잘함..ㅠ
+
+  - ```python
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    urlpatterns += staticfiles_urlpatterns()
+    ```
+
+### 2. tts 코드 동작
+
+- 기존에 사용하던 pyttsx3를 실행시켜도 mp3파일이 생성되지 않음
+- static 경로문제인줄 알았으나 수정된 후에도 여전히 동작하지 않음
+- gTTS로 바꾸니 정상적으로 동작함...
+
