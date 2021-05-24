@@ -9,27 +9,15 @@ from django.http import HttpResponse, JsonResponse
 from django.template import loader
 import random
 import pyttsx3
+from pathlib import Path
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 def welcome(request) :
     return HttpResponse("<h1>장고 공부를 재미있게 합시다!!</h1>")
-
-'''
-class TTSView(FormView):
-    template_name = 'testTTS/testTTS.html'
-    form_class = TTSForm
-    success_url = '/tts/success'
-
-    def form_valid(self, form):
-        text = self.request.POST['message']
-        tts = gTTS(text=text, lang='ko')
-        tts.save("%s.mp3" % os.path.join('./TTS/', "tts"))
-        print("%s.mp3" % os.path.join('./TTS/', "tts"))
-        return super().form_valid(form)
-
-
-class SuccessView(TemplateView):
-    template_name = 'signtotext/successTTS.html'
-'''
+    
 
 def input(request):
     return render(request, 'input.html')
@@ -37,17 +25,17 @@ def input(request):
 
 def output(request):
     text = request.GET.get('text')
-    ## pyttsx3
+    '''## pyttsx3
     # TTS 엔진 초기화
     engine = pyttsx3.init()
 
     # 말하는 속도
-    engine.setProperty('rate', 180)
     rate = engine.getProperty('rate')
+    engine.setProperty('rate', 180)
 
     # 소리 크기
-    engine.setProperty('volume', 0.5)  # 0~1
     volume = engine.getProperty('volume')
+    engine.setProperty('volume', 0.5)  # 0~1
 
     # 목소리
     voices = engine.getProperty('voices')
@@ -55,10 +43,15 @@ def output(request):
     # engine.setProperty('voice', voices[1].id)  # 영어만 출력 가능
 
     # 파일 저장
-    engine.save_to_file(text, '%s.mp3' % os.path.join('./signtotext/static/', "tts1"))
-    engine.runAndWait()
+    #engine.save_to_file(text, '%s.mp3')
+    engine.save_to_file(text, 'ttstest.mp3')
+    engine.runAndWait()'''
 
+    tts = gTTS( text=text, lang='ko', slow=False)
+    tts.save('%s.mp3' % os.path.join(BASE_DIR, 'signtotext/static',text))
+    path = '/static/' + text + '.mp3'
     context = {
         'text': text,
+        'path': path
     }
     return render(request, 'output.html', context)

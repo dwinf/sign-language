@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -13,11 +14,18 @@
     * {
        font-family: 'MaplestoryOTFBold';
     }
+    .wrapper {
+        justify-content: center;
+        align-items: center;
+        text-align : center;
+        margin : auto;
+    }
     </style>
-    {% load static %}
 </head>
 <body>
-    <h1>{{ text }}을 음성으로 바꿉니다.</h1>
-    <audio src="{% static 'tts1.mp3' %}" controls="controls" autoplay="autoplay"></audio>
+  <div class="wrapper">
+    <h1><span style="color : blue">{{ text }}</span>을/를 음성으로 바꿉니다.</h1>
+    <audio src= "{{ path }}" controls="controls" autoplay="autoplay"></audio>
+  </div>
 </body>
 </html>
