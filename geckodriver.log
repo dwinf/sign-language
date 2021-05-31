@@ -1,0 +1,17 @@
+1622422479808	geckodriver	INFO	Listening on 127.0.0.1:61664
+1622422974368	geckodriver	INFO	Listening on 127.0.0.1:61759
+1622423115800	geckodriver	INFO	Listening on 127.0.0.1:61785
+1622423257151	geckodriver	INFO	Listening on 127.0.0.1:61889
+1622423260168	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\a\\AppData\\Local\\Temp\\rust_mozprofilejdwBOY"
+1622423260485	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1622423262859	Marionette	INFO	Listening on port 61897
+1622423263344	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: NotAllowedError: The play method is not allowed by the user agent or the platform in the current context, possibly because the user denied permission.
+JavaScript error: , line 0: NotAllowedError: The play method is not allowed by the user agent or the platform in the current context, possibly because the user denied permission.
+JavaScript error: , line 0: NotAllowedError: The play method is not allowed by the user agent or the platform in the current context, possibly because the user denied permission.
+JavaScript error: , line 0: NotAllowedError: The play method is not allowed by the user agent or the platform in the current context, possibly because the user denied permission.
+1622423341175	Marionette	INFO	Stopped listening on port 61897
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
